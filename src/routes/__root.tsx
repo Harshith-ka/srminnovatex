@@ -73,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SRM InnovateX 2026 | 24-Hour National Hackathon" },
       { name: "description", content: "Join SRM InnovateX 2026, a 24-hour national hackathon bringing together innovators, developers, designers, and entrepreneurs to solve real-world challenges and compete for a ₹60,000 prize pool." },
-      { name: "theme-color", content: "#040816" },
+      { name: "theme-color", content: "#f5f0e0" },
       { property: "og:title", content: "SRM InnovateX 2026 | 24-Hour National Hackathon" },
       { property: "og:description", content: "Build Tomorrow in 24 Hours. Compete for ₹60,000 across 6 innovation tracks at SRM University, Ramapuram." },
       { property: "og:type", content: "website" },
