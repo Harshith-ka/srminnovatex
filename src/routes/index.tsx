@@ -364,25 +364,56 @@ function Prizes() {
 
 function Tracks() {
   const tracks = [
-    { icon: Brain, name: "AI & Machine Learning", desc: "Build intelligent systems that learn, reason, and adapt." },
-    { icon: Leaf, name: "Sustainability & Climate", desc: "Tech that helps the planet breathe easier." },
-    { icon: HeartPulse, name: "Healthcare & MedTech", desc: "Reimagine diagnostics, care, and access." },
-    { icon: GraduationCap, name: "Education Technology", desc: "Rethink how the next billion learners learn." },
-    { icon: Coins, name: "FinTech", desc: "Banking, payments, and finance for a new era." },
-    { icon: Rocket, name: "Open Innovation", desc: "No rules. Just build something audacious." },
+    { icon: Brain, name: "AI & Machine Learning", desc: "Build intelligent systems that learn, reason, and adapt.", tag: "01", stats: "12 mentors" },
+    { icon: Leaf, name: "Sustainability & Climate", desc: "Tech that helps the planet breathe easier.", tag: "02", stats: "8 mentors" },
+    { icon: HeartPulse, name: "Healthcare & MedTech", desc: "Reimagine diagnostics, care, and access.", tag: "03", stats: "10 mentors" },
+    { icon: GraduationCap, name: "Education Technology", desc: "Rethink how the next billion learners learn.", tag: "04", stats: "6 mentors" },
+    { icon: Coins, name: "FinTech", desc: "Banking, payments, and finance for a new era.", tag: "05", stats: "9 mentors" },
+    { icon: Rocket, name: "Open Innovation", desc: "No rules. Just build something audacious.", tag: "06", stats: "15 mentors" },
   ];
   return (
     <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Six focused tracks — each with dedicated mentors and problem statements.">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {tracks.map(({ icon: Icon, name, desc }) => (
-          <div key={name} className="group relative glass rounded-2xl p-6 overflow-hidden hover:-translate-y-2 transition-all duration-500">
-            <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-br from-primary/20 to-purple/20 blur-2xl opacity-0 group-hover:opacity-100 transition" />
-            <div className="relative">
-              <Icon className="h-8 w-8 text-cyan group-hover:text-purple transition" strokeWidth={1.5} />
-              <h3 className="mt-5 font-display text-xl font-semibold">{name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-              <div className="mt-5 flex items-center gap-1.5 text-xs text-primary opacity-0 group-hover:opacity-100 transition">
-                Explore track <ArrowRight className="h-3 w-3" />
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tracks.map(({ icon: Icon, name, desc, tag, stats }) => (
+          <div
+            key={name}
+            className="group relative rounded-3xl p-[1px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
+            style={{ background: "linear-gradient(140deg, rgba(6,78,59,0.18), rgba(201,168,76,0.28), rgba(6,78,59,0.10))" }}
+          >
+            {/* animated conic sheen on hover */}
+            <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                 style={{ background: "conic-gradient(from_0deg,transparent,rgba(201,168,76,0.35),transparent_40%)" }} />
+            <div className="relative h-full rounded-[calc(1.5rem-1px)] bg-[color-mix(in_oklab,var(--surface)_92%,transparent)] backdrop-blur-xl p-7 overflow-hidden">
+              {/* corner glow */}
+              <div className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full blur-3xl opacity-40 group-hover:opacity-90 transition-opacity duration-700"
+                   style={{ background: "radial-gradient(circle, rgba(201,168,76,0.55), transparent 70%)" }} />
+              {/* grid pattern */}
+              <div className="pointer-events-none absolute inset-0 opacity-[0.05] group-hover:opacity-[0.09] transition"
+                   style={{ backgroundImage: "linear-gradient(var(--primary) 1px,transparent 1px),linear-gradient(90deg,var(--primary) 1px,transparent 1px)", backgroundSize: "22px 22px" }} />
+
+              <div className="relative flex items-start justify-between">
+                <div className="relative">
+                  <div className="absolute inset-0 blur-xl bg-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition duration-500" />
+                  <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/25 transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                    <Icon className="h-7 w-7 text-primary" strokeWidth={1.6} />
+                  </div>
+                </div>
+                <span className="font-display text-4xl font-bold text-primary/10 group-hover:text-accent/40 transition-colors duration-500">
+                  {tag}
+                </span>
+              </div>
+
+              <h3 className="mt-6 font-display text-xl font-semibold leading-tight">{name}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+
+              <div className="mt-6 flex items-center justify-between pt-5 border-t border-primary/10">
+                <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">{stats}</span>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
+                  Explore
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300 group-hover:rotate-[-45deg]">
+                    <ArrowRight className="h-3 w-3" />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -394,34 +425,67 @@ function Tracks() {
 
 function Timeline() {
   const steps = [
-    { date: "Jun 15", title: "Registration Opens", desc: "Applications go live." },
-    { date: "Aug 05", title: "Registration Closes", desc: "Final teams confirmed." },
-    { date: "Aug 14", title: "Hackathon Starts", desc: "09:00 AM · The clock starts." },
-    { date: "Aug 15", title: "Project Evaluation", desc: "Live demos to judges." },
-    { date: "Aug 15", title: "Prize Distribution", desc: "Winners announced." },
+    { date: "Jun 15", time: "00:00 IST", title: "Registration Opens", desc: "Applications go live to teams across India.", icon: Sparkles },
+    { date: "Aug 05", time: "23:59 IST", title: "Registration Closes", desc: "Final teams confirmed and shortlisted.", icon: FileBadge },
+    { date: "Aug 14", time: "09:00 IST", title: "Hackathon Starts", desc: "The 24-hour clock officially begins.", icon: Rocket },
+    { date: "Aug 15", time: "09:00 IST", title: "Project Evaluation", desc: "Live demos to a panel of industry judges.", icon: Code2 },
+    { date: "Aug 15", time: "18:00 IST", title: "Prize Distribution", desc: "Winners announced. Champions crowned.", icon: Trophy },
   ];
   return (
     <Section id="timeline" eyebrow="Timeline" title="Mark your calendar.">
       <div className="relative">
-        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-purple to-cyan md:-translate-x-px" />
-        <div className="space-y-8">
-          {steps.map((s, i) => (
-            <div key={i} className={`relative pl-16 md:pl-0 md:grid md:grid-cols-2 md:gap-10 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
-              <div className={`md:text-right ${i % 2 === 1 ? "md:text-left" : ""}`}>
-                <div className="glass-strong rounded-2xl p-5 inline-block text-left">
-                  <div className="text-xs text-cyan uppercase tracking-wider">{s.date}</div>
-                  <div className="mt-1 font-display text-lg font-semibold">{s.title}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{s.desc}</div>
+        {/* rail */}
+        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-1/2 overflow-hidden rounded-full">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/40 to-primary/10" />
+          <div className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[shimmer_3s_linear_infinite]"
+               style={{ backgroundSize: "100% 300%" }} />
+        </div>
+
+        <div className="space-y-12 md:space-y-16">
+          {steps.map((s, i) => {
+            const Icon = s.icon;
+            const right = i % 2 === 1;
+            return (
+              <div
+                key={i}
+                className="relative pl-20 md:pl-0 md:grid md:grid-cols-2 md:gap-16 items-center animate-fade-up"
+                style={{ animationDelay: `${i * 120}ms` }}
+              >
+                {/* card */}
+                <div className={`${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
+                  <div className={`group relative inline-block max-w-md text-left transition-all duration-500 hover:-translate-y-1 ${right ? "" : "md:ml-auto"}`}>
+                    <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 opacity-0 group-hover:opacity-100 blur-xl transition duration-500" />
+                    <div className="relative rounded-2xl p-6 bg-[color-mix(in_oklab,var(--surface)_92%,transparent)] backdrop-blur-xl border border-primary/15 shadow-[0_20px_50px_-25px_rgba(6,78,59,0.35)]">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
+                          <Icon className="h-4 w-4" strokeWidth={1.8} />
+                        </span>
+                        <div>
+                          <div className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold">{s.date}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{s.time}</div>
+                        </div>
+                      </div>
+                      <div className="font-display text-lg md:text-xl font-semibold leading-tight">{s.title}</div>
+                      <div className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="absolute left-6 md:left-1/2 top-6 -translate-x-1/2">
-                <div className="grid h-4 w-4 place-items-center rounded-full bg-background border-2 border-primary shadow-[0_0_20px_rgba(59,130,246,0.6)]">
-                  <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+
+                {/* node */}
+                <div className="absolute left-8 md:left-1/2 top-8 -translate-x-1/2 z-10">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-full bg-accent/40 blur-md animate-[glow-pulse_4s_ease-in-out_infinite]" />
+                    <div className="relative grid h-6 w-6 place-items-center rounded-full bg-background border-2 border-accent shadow-[0_0_0_4px_color-mix(in_oklab,var(--primary)_10%,transparent)]">
+                      <div className="h-2 w-2 rounded-full bg-gradient-to-br from-primary to-accent" />
+                    </div>
+                  </div>
                 </div>
+
+                {/* empty spacer for even row */}
+                <div className={right ? "md:col-start-1 md:row-start-1" : "md:col-start-2 md:row-start-1"} />
               </div>
-              <div />
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </Section>
