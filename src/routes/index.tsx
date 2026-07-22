@@ -423,6 +423,84 @@ function Tracks() {
   );
 }
 
+function useReveal<T extends HTMLElement = HTMLDivElement>() {
+  const [ref, setRef] = useState<T | null>(null);
+  useEffect(() => {
+    if (!ref) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      ref.classList.add("in-view");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            ref.classList.add("in-view");
+            io.unobserve(ref);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(ref);
+    return () => io.disconnect();
+  }, [ref]);
+  return setRef;
+}
+
+function TimelineRow({
+  s, i, right,
+}: {
+  s: { date: string; time: string; title: string; desc: string; icon: any };
+  i: number;
+  right: boolean;
+}) {
+  const setRef = useReveal<HTMLDivElement>();
+  const Icon = s.icon;
+  // Cap stagger so mobile doesn't wait forever
+  const delay = Math.min(i, 3) * 90;
+  return (
+    <div
+      ref={setRef}
+      className="reveal relative pl-16 sm:pl-20 md:pl-0 md:grid md:grid-cols-2 md:gap-16 items-center"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {/* card */}
+      <div className={`${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
+        <div className={`group relative inline-block max-w-md text-left transition-all duration-500 md:hover:-translate-y-1 ${right ? "" : "md:ml-auto"}`}>
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 opacity-0 md:group-hover:opacity-100 blur-xl transition duration-500 motion-reduce:hidden" />
+          <div className="relative rounded-2xl p-5 sm:p-6 bg-[color-mix(in_oklab,var(--surface)_92%,transparent)] backdrop-blur-xl border border-primary/15 shadow-[0_20px_50px_-25px_rgba(6,78,59,0.35)]">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
+                <Icon className="h-4 w-4" strokeWidth={1.8} />
+              </span>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold">{s.date}</div>
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{s.time}</div>
+              </div>
+            </div>
+            <div className="font-display text-lg md:text-xl font-semibold leading-tight">{s.title}</div>
+            <div className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* node */}
+      <div className="absolute left-6 sm:left-8 md:left-1/2 top-6 md:top-8 -translate-x-1/2 z-10">
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-accent/40 blur-md animate-[glow-pulse_4s_ease-in-out_infinite] motion-reduce:hidden" />
+          <div className="relative grid h-5 w-5 md:h-6 md:w-6 place-items-center rounded-full bg-background border-2 border-accent shadow-[0_0_0_4px_color-mix(in_oklab,var(--primary)_10%,transparent)]">
+            <div className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-gradient-to-br from-primary to-accent" />
+          </div>
+        </div>
+      </div>
+
+      <div className={right ? "md:col-start-1 md:row-start-1" : "md:col-start-2 md:row-start-1"} />
+    </div>
+  );
+}
+
 function Timeline() {
   const steps = [
     { date: "Jun 15", time: "00:00 IST", title: "Registration Opens", desc: "Applications go live to teams across India.", icon: Sparkles },
@@ -435,57 +513,18 @@ function Timeline() {
     <Section id="timeline" eyebrow="Timeline" title="Mark your calendar.">
       <div className="relative">
         {/* rail */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-1/2 overflow-hidden rounded-full">
+        <div className="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-1/2 overflow-hidden rounded-full">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/40 to-primary/10" />
-          <div className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[shimmer_3s_linear_infinite]"
-               style={{ backgroundSize: "100% 300%" }} />
+          <div
+            className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[shimmer_3s_linear_infinite] motion-reduce:hidden"
+            style={{ backgroundSize: "100% 300%" }}
+          />
         </div>
 
-        <div className="space-y-12 md:space-y-16">
-          {steps.map((s, i) => {
-            const Icon = s.icon;
-            const right = i % 2 === 1;
-            return (
-              <div
-                key={i}
-                className="relative pl-20 md:pl-0 md:grid md:grid-cols-2 md:gap-16 items-center animate-fade-up"
-                style={{ animationDelay: `${i * 120}ms` }}
-              >
-                {/* card */}
-                <div className={`${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
-                  <div className={`group relative inline-block max-w-md text-left transition-all duration-500 hover:-translate-y-1 ${right ? "" : "md:ml-auto"}`}>
-                    <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 opacity-0 group-hover:opacity-100 blur-xl transition duration-500" />
-                    <div className="relative rounded-2xl p-6 bg-[color-mix(in_oklab,var(--surface)_92%,transparent)] backdrop-blur-xl border border-primary/15 shadow-[0_20px_50px_-25px_rgba(6,78,59,0.35)]">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
-                          <Icon className="h-4 w-4" strokeWidth={1.8} />
-                        </span>
-                        <div>
-                          <div className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold">{s.date}</div>
-                          <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{s.time}</div>
-                        </div>
-                      </div>
-                      <div className="font-display text-lg md:text-xl font-semibold leading-tight">{s.title}</div>
-                      <div className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* node */}
-                <div className="absolute left-8 md:left-1/2 top-8 -translate-x-1/2 z-10">
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-accent/40 blur-md animate-[glow-pulse_4s_ease-in-out_infinite]" />
-                    <div className="relative grid h-6 w-6 place-items-center rounded-full bg-background border-2 border-accent shadow-[0_0_0_4px_color-mix(in_oklab,var(--primary)_10%,transparent)]">
-                      <div className="h-2 w-2 rounded-full bg-gradient-to-br from-primary to-accent" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* empty spacer for even row */}
-                <div className={right ? "md:col-start-1 md:row-start-1" : "md:col-start-2 md:row-start-1"} />
-              </div>
-            );
-          })}
+        <div className="space-y-10 sm:space-y-12 md:space-y-16">
+          {steps.map((s, i) => (
+            <TimelineRow key={i} s={s} i={i} right={i % 2 === 1} />
+          ))}
         </div>
       </div>
     </Section>
