@@ -11,7 +11,7 @@ import {
   Trophy, Award, Medal, Users, Briefcase, FileBadge, Code2, Network,
   MapPin, Mail, Phone, Instagram, Linkedin, Calendar, Clock, ArrowRight,
   Menu, X, Github, Twitter, Wheat, Building2, Laptop, Gift,
-  Shield, Star, Zap, CheckCircle2, TrendingUp,
+  Shield, Star, Zap, CheckCircle2, TrendingUp, Cpu, Wrench,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -507,6 +507,20 @@ function Tracks() {
   ];
   return (
     <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Five focused tracks — each with dedicated mentors and industry problem statements.">
+      {/* Hardware callout */}
+      <div className="mb-8 glass-strong rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 border-l-2 border-primary">
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20">
+            <Cpu className="h-5 w-5 text-primary" />
+          </div>
+          <div className="font-display font-semibold text-sm">Hardware Prototypes Welcome</div>
+        </div>
+        <div className="hidden sm:block h-8 w-px bg-primary/15" />
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Teams may build <span className="text-foreground font-medium">hardware prototypes</span> across any track — IoT devices, embedded systems, sensors, robotics, and more. Power outlets and workspace are provided. All components, modules, and hardware must be <span className="text-foreground font-medium">brought by the team</span>.
+        </p>
+      </div>
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tracks.map(({ icon: Icon, name, desc, tag, color }) => (
           <div
@@ -534,7 +548,11 @@ function Tracks() {
               </div>
               <h3 className="mt-6 font-display text-xl font-semibold leading-tight">{name}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              <div className="mt-6 flex items-center justify-between pt-5 border-t border-primary/10">
+              <div className="mt-4 flex items-center gap-1.5">
+                <Cpu className="h-3 w-3 text-muted-foreground" />
+                <span className="text-[10px] text-muted-foreground">Hardware prototypes allowed</span>
+              </div>
+              <div className="mt-4 flex items-center justify-between pt-4 border-t border-primary/10">
                 <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Explore track</span>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300 group-hover:rotate-[-45deg]">
@@ -759,7 +777,8 @@ function FAQ() {
     { q: "What is the team size?", a: "Teams of 3 to 5 members. Fees vary by team size: ₹1,399 for 3 members, ₹1,799 for 4, ₹2,099 for 5." },
     { q: "Can beginners participate?", a: "Absolutely. We have mentors on-ground and beginner-friendly problem statements across all tracks." },
     { q: "Can we use AI tools?", a: "Yes, AI tools like GitHub Copilot and Cursor are welcome — build with the modern stack." },
-    { q: "What should we bring?", a: "Laptop & charger, extension board, power bank, ID card, and personal essentials. Refreshments and one dinner are provided." },
+    { q: "Can we build hardware prototypes?", a: "Yes! Teams can build hardware prototypes across any track — IoT devices, embedded systems, sensors, robotics, and similar. Power outlets and workspace will be provided at the venue. All hardware components, modules, microcontrollers, sensors, and equipment must be brought by the team itself." },
+    { q: "What should we bring?", a: "Laptop & charger, extension board, power bank, ID card, and personal essentials. If building a hardware prototype, bring all required components and equipment — the venue only provides power outlets. Refreshments and one dinner are provided for all participants." },
     { q: "Is accommodation provided?", a: "Accommodation arrangements will be communicated to registered teams. Please reach out to the organizers for details." },
   ];
   return (
