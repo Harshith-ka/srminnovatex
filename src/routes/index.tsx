@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import logoAsset from "@/assets/innovatex-logo.png.asset.json";
 import { useEffect, useState } from "react";
 import {
   Accordion,
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/")({
   component: InnovateXLanding,
 });
 
-const TARGET_DATE = new Date("2026-08-14T09:00:00+05:30").getTime();
+const TARGET_DATE = new Date("2026-09-26T09:00:00+05:30").getTime();
 
 function useCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
@@ -69,11 +70,9 @@ function Nav() {
       <div className="mx-auto max-w-7xl px-4">
         <nav className={`flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all ${scrolled ? "glass-strong" : "glass"}`}>
           <a href="#home" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-xl btn-glow">
-              <Sparkles className="h-4 w-4 text-white" />
-            </div>
+            <img src={logoAsset.url} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div className="flex flex-col leading-tight">
-              <span className="font-display text-sm font-bold tracking-tight">InnovateX</span>
+              <span className="font-display text-sm font-bold tracking-tight">SRM InnovateX</span>
               <span className="text-[10px] text-muted-foreground -mt-0.5">SRM · 2026</span>
             </div>
           </a>
@@ -111,7 +110,7 @@ function Hero() {
   const t = useCountdown();
   const stats = [
     { v: "₹60K", l: "Prize Pool" },
-    { v: "6", l: "Tracks" },
+    { v: "5", l: "Tracks" },
     { v: "24", l: "Hours" },
     { v: "PAN", l: "India" },
   ];
@@ -126,7 +125,7 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
               </span>
-              National Hackathon · August 14, 2026
+              National Hackathon · September 26-27, 2026
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02]">
               <span className="text-gradient">SRM</span>{" "}
@@ -177,7 +176,7 @@ function Hero() {
                   <div className="pl-4">name: <span className="text-green-300">"InnovateX"</span>,</div>
                   <div className="pl-4">year: <span className="text-orange-300">2026</span>,</div>
                   <div className="pl-4">prize: <span className="text-green-300">"₹60K"</span>,</div>
-                  <div className="pl-4">tracks: <span className="text-orange-300">6</span>,</div>
+                  <div className="pl-4">tracks: <span className="text-orange-300">5</span>,</div>
                   <div>{"}"};</div>
                   <div className="pt-2 text-muted-foreground">// build.tomorrow()</div>
                 </div>
@@ -201,7 +200,7 @@ function Hero() {
               </div>
               <div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">Hackathon Begins</div>
-                <div className="font-display font-semibold">14 August 2026 · 09:00 AM IST</div>
+                <div className="font-display font-semibold">26 September 2026 · 09:00 AM IST</div>
               </div>
             </div>
             <div className="flex gap-2 sm:gap-3">
@@ -364,15 +363,14 @@ function Prizes() {
 
 function Tracks() {
   const tracks = [
-    { icon: Brain, name: "AI & Machine Learning", desc: "Build intelligent systems that learn, reason, and adapt.", tag: "01", stats: "12 mentors" },
-    { icon: Leaf, name: "Sustainability & Climate", desc: "Tech that helps the planet breathe easier.", tag: "02", stats: "8 mentors" },
-    { icon: HeartPulse, name: "Healthcare & MedTech", desc: "Reimagine diagnostics, care, and access.", tag: "03", stats: "10 mentors" },
-    { icon: GraduationCap, name: "Education Technology", desc: "Rethink how the next billion learners learn.", tag: "04", stats: "6 mentors" },
-    { icon: Coins, name: "FinTech", desc: "Banking, payments, and finance for a new era.", tag: "05", stats: "9 mentors" },
-    { icon: Rocket, name: "Open Innovation", desc: "No rules. Just build something audacious.", tag: "06", stats: "15 mentors" },
+    { icon: Leaf, name: "Sustainability & Climate", desc: "Tech that helps the planet breathe easier.", tag: "01", stats: "8 mentors" },
+    { icon: HeartPulse, name: "Healthcare & MedTech", desc: "Reimagine diagnostics, care, and access.", tag: "02", stats: "10 mentors" },
+    { icon: GraduationCap, name: "Education Technology", desc: "Rethink how the next billion learners learn.", tag: "03", stats: "6 mentors" },
+    { icon: Coins, name: "FinTech", desc: "Banking, payments, and finance for a new era.", tag: "04", stats: "9 mentors" },
+    { icon: Rocket, name: "Open Innovation", desc: "No rules. Just build something audacious.", tag: "05", stats: "15 mentors" },
   ];
   return (
-    <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Six focused tracks — each with dedicated mentors and problem statements.">
+    <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Five focused tracks — each with dedicated mentors and problem statements.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tracks.map(({ icon: Icon, name, desc, tag, stats }) => (
           <div
@@ -503,11 +501,11 @@ function TimelineRow({
 
 function Timeline() {
   const steps = [
-    { date: "Jun 15", time: "00:00 IST", title: "Registration Opens", desc: "Applications go live to teams across India.", icon: Sparkles },
-    { date: "Aug 05", time: "23:59 IST", title: "Registration Closes", desc: "Final teams confirmed and shortlisted.", icon: FileBadge },
-    { date: "Aug 14", time: "09:00 IST", title: "Hackathon Starts", desc: "The 24-hour clock officially begins.", icon: Rocket },
-    { date: "Aug 15", time: "09:00 IST", title: "Project Evaluation", desc: "Live demos to a panel of industry judges.", icon: Code2 },
-    { date: "Aug 15", time: "18:00 IST", title: "Prize Distribution", desc: "Winners announced. Champions crowned.", icon: Trophy },
+    { date: "Aug 01", time: "00:00 IST", title: "Registration Opens", desc: "Applications go live to teams across India.", icon: Sparkles },
+    { date: "Sep 15", time: "23:59 IST", title: "Registration Closes", desc: "Final teams confirmed and shortlisted.", icon: FileBadge },
+    { date: "Sep 26", time: "09:00 IST", title: "Hackathon Starts", desc: "The 24-hour clock officially begins.", icon: Rocket },
+    { date: "Sep 27", time: "09:00 IST", title: "Project Evaluation", desc: "Live demos to a panel of industry judges.", icon: Code2 },
+    { date: "Sep 27", time: "18:00 IST", title: "Prize Distribution", desc: "Winners announced. Champions crowned.", icon: Trophy },
   ];
   return (
     <Section id="timeline" eyebrow="Timeline" title="Mark your calendar.">
@@ -543,7 +541,7 @@ function Venue() {
           <p className="mt-1 text-muted-foreground">Ramapuram Campus, Chennai — Tamil Nadu, India</p>
           <div className="mt-6 space-y-3 text-sm">
             <div className="flex items-start gap-3"><MapPin className="h-4 w-4 text-primary mt-0.5" /> Bharathi Salai, Ramapuram, Chennai — 600089</div>
-            <div className="flex items-start gap-3"><Clock className="h-4 w-4 text-primary mt-0.5" /> 14 Aug 09:00 AM → 15 Aug 09:00 AM IST</div>
+            <div className="flex items-start gap-3"><Clock className="h-4 w-4 text-primary mt-0.5" /> 26 Sep 09:00 AM → 27 Sep 09:00 AM IST</div>
             <div className="flex items-start gap-3"><Users className="h-4 w-4 text-primary mt-0.5" /> Open to students across India</div>
           </div>
           <a href="https://maps.google.com/?q=SRM+University+Ramapuram" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm hover:bg-white/10 transition">
@@ -593,13 +591,13 @@ function FAQ() {
 }
 
 function Sponsors() {
-  const logos = ["GitHub", "Vercel", "Linear", "Notion", "MongoDB", "AWS", "Figma", "Postman", "Devfolio", "Google"];
+  const logos = ["Paryan Technologies Private Limited", "Big Bucks Innovation Private Limited"];
   return (
     <Section id="sponsors" eyebrow="Sponsors & partners" title="Backed by industry leaders.">
       <div className="relative overflow-hidden py-6 mask-fade">
         <div className="flex gap-10 animate-marquee w-max">
-          {[...logos, ...logos].map((name, i) => (
-            <div key={i} className="glass rounded-2xl px-8 py-5 min-w-[180px] text-center">
+          {[...logos, ...logos, ...logos, ...logos].map((name, i) => (
+            <div key={i} className="glass rounded-2xl px-8 py-5 min-w-[280px] flex items-center justify-center text-center">
               <div className="font-display text-xl font-semibold text-muted-foreground hover:text-foreground transition">{name}</div>
             </div>
           ))}
@@ -616,12 +614,9 @@ function Sponsors() {
 
 function Team() {
   const team = [
-    { name: "Aarav Sharma", role: "Lead Organizer" },
-    { name: "Priya Nair", role: "Tech Lead" },
-    { name: "Rohan Iyer", role: "Design Lead" },
-    { name: "Ananya Rao", role: "Sponsorships" },
-    { name: "Vikram Reddy", role: "Operations" },
-    { name: "Meera Krishnan", role: "Marketing" },
+    { name: "K. Harshith", role: "Lead Organizer" },
+    { name: "P. Pranush", role: "Tech Lead" },
+    { name: "U. Veerendra", role: "Finance Lead" },
   ];
   return (
     <Section id="team" eyebrow="Organizing team" title="Meet the crew behind InnovateX.">
@@ -660,7 +655,7 @@ function ContactCTA() {
                 Ready to <span className="text-gradient-brand">build tomorrow</span>?
               </h2>
               <p className="mt-4 text-muted-foreground text-lg">
-                Grab your spot before registrations close on August 5th.
+                Grab your spot before registrations close on September 15th.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#" className="inline-flex items-center gap-2 rounded-full btn-glow btn-glow-hover px-7 py-3.5 text-sm font-semibold text-white">
@@ -700,12 +695,10 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-xl btn-glow">
-              <Sparkles className="h-4 w-4 text-white" />
-            </div>
+            <img src={logoAsset.url} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div>
               <div className="font-display font-bold">SRM InnovateX 2026</div>
-              <div className="text-xs text-muted-foreground">Build Tomorrow in 24 Hours</div>
+              <div className="text-xs text-muted-foreground">Ideate | Innovate | Impact</div>
             </div>
           </div>
           <p className="mt-4 text-sm text-muted-foreground max-w-sm">
