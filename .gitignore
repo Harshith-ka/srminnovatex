@@ -1,3 +1,6 @@
+# Lovable IDE files (not needed outside the Lovable editor)
+.lovable/
+
 # Logs
 logs
 *.log
