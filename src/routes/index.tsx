@@ -7,17 +7,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  Rocket, Brain, Leaf, HeartPulse, GraduationCap, Coins, Sparkles,
+  Rocket, Leaf, GraduationCap, Coins, Sparkles,
   Trophy, Award, Medal, Users, Briefcase, FileBadge, Code2, Network,
   MapPin, Mail, Phone, Instagram, Linkedin, Calendar, Clock, ArrowRight,
-  Menu, X, Github, Twitter,
+  Menu, X, Github, Twitter, Wheat, Building2, Laptop, Gift,
+  Shield, Star, Zap, CheckCircle2, TrendingUp,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: InnovateXLanding,
 });
 
-const TARGET_DATE = new Date("2026-09-26T09:00:00+05:30").getTime();
+const TARGET_DATE = new Date("2026-09-19T09:00:00+05:30").getTime();
 
 function useCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
@@ -111,7 +112,7 @@ function Hero() {
     { v: "₹60K", l: "Prize Pool" },
     { v: "5", l: "Tracks" },
     { v: "24", l: "Hours" },
-    { v: "PAN", l: "India" },
+    { v: "200+", l: "Participants" },
   ];
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-28 pb-16">
@@ -124,7 +125,7 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
               </span>
-              National Hackathon · September 26-27, 2026
+              National Hackathon · September 19-20, 2026
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02]">
               <span className="text-gradient">SRM</span>{" "}
@@ -199,7 +200,7 @@ function Hero() {
               </div>
               <div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">Hackathon Begins</div>
-                <div className="font-display font-semibold">26 September 2026 · 09:00 AM IST</div>
+                <div className="font-display font-semibold">19 September 2026 · 09:00 AM IST</div>
               </div>
             </div>
             <div className="flex gap-2 sm:gap-3">
@@ -241,52 +242,119 @@ function Section({ id, eyebrow, title, children, subtitle }: { id?: string; eyeb
 }
 
 function About() {
-  const pillars = [
-    { icon: Sparkles, label: "Innovation", desc: "Push boundaries with bold ideas." },
-    { icon: Network, label: "Collaboration", desc: "Team up with the brightest builders." },
-    { icon: GraduationCap, label: "Learning", desc: "Workshops & mentorship from experts." },
-    { icon: Users, label: "Networking", desc: "Meet founders, engineers, and investors." },
+  const keyFacts = [
+    { icon: Calendar, label: "Event Date", value: "19–20 Sep 2026" },
+    { icon: Clock, label: "Duration", value: "24 Hours" },
+    { icon: Users, label: "Participants", value: "200+ Expected" },
+    { icon: Code2, label: "Team Size", value: "3–5 Members" },
+    { icon: MapPin, label: "Venue", value: "SRM Ramapuram" },
+    { icon: Trophy, label: "Prize Pool", value: "₹60,000" },
   ];
+
+  const pillars = [
+    { icon: Sparkles, label: "Innovation", desc: "Identify problems, ideate solutions, and build working prototypes." },
+    { icon: Network, label: "Collaboration", desc: "Team up with the brightest builders across India." },
+    { icon: GraduationCap, label: "Mentorship", desc: "Interact with industry professionals and startup founders." },
+    { icon: Briefcase, label: "Opportunities", desc: "Discover internship and career pathways with partners." },
+  ];
+
   return (
     <Section id="about" eyebrow="About the event" title="A 24-hour arena for the next generation of builders.">
+      {/* Key facts grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-12">
+        {keyFacts.map(({ icon: Icon, label, value }) => (
+          <div key={label} className="glass-strong rounded-2xl p-4 text-center group hover:-translate-y-1 transition-all duration-300">
+            <div className="mx-auto grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/30 group-hover:to-accent/30 transition mb-2">
+              <Icon className="h-5 w-5 text-primary" />
+            </div>
+            <div className="font-display text-sm font-bold text-gradient-brand leading-tight">{value}</div>
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">{label}</div>
+          </div>
+        ))}
+      </div>
+
       <div className="grid lg:grid-cols-2 gap-10 items-start">
-        <div className="glass-strong rounded-3xl p-8 aspect-square relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-30" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-56 w-56 rounded-full bg-gradient-to-br from-primary to-purple blur-3xl opacity-60" />
-          <div className="relative h-full flex items-center justify-center">
-            <div className="text-center">
-              <div className="font-display text-8xl font-bold text-gradient-brand">24h</div>
-              <div className="mt-3 text-muted-foreground">of pure building</div>
-              <div className="mt-8 flex justify-center gap-2">
-                {["React", "AI", "Web3", "Cloud"].map((t) => (
-                  <span key={t} className="glass rounded-full px-3 py-1 text-xs">{t}</span>
+        {/* Left: visual + description */}
+        <div className="space-y-5">
+          <div className="glass-strong rounded-3xl p-8 relative overflow-hidden">
+            <div className="absolute inset-0 grid-bg opacity-20" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-48 w-48 rounded-full bg-gradient-to-br from-primary to-purple blur-3xl opacity-40" />
+            <div className="relative flex items-center gap-6">
+              <div className="shrink-0 text-center">
+                <div className="font-display text-6xl sm:text-7xl font-bold text-gradient-brand leading-none">24h</div>
+                <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">of pure building</div>
+              </div>
+              <div className="h-16 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
+              <div className="space-y-2">
+                {["Identify the problem", "Ideate a solution", "Build a prototype", "Present to judges"].map((step, i) => (
+                  <div key={step} className="flex items-center gap-2 text-sm">
+                    <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-[9px] font-bold text-white shrink-0">{i + 1}</span>
+                    <span className="text-foreground/80">{step}</span>
+                  </div>
                 ))}
               </div>
             </div>
+            <div className="relative mt-6 flex flex-wrap gap-2">
+              {["FinTech", "AgriTech", "EduTech", "Sustainability", "Open Innovation"].map((t) => (
+                <span key={t} className="glass rounded-full px-3 py-1 text-xs font-medium">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-base text-muted-foreground leading-relaxed">
+            SRM InnovateX 2026 is a student-driven 24-hour hackathon designed to bring together developers, designers, innovators and aspiring entrepreneurs to build practical technology solutions for real-world challenges.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div className="glass rounded-2xl p-5 border-l-2 border-primary">
+              <div className="text-xs uppercase tracking-wider text-cyan mb-1.5 font-semibold">Mission</div>
+              <div className="text-sm">Empower students to solve real-world problems through code and creativity.</div>
+            </div>
+            <div className="glass rounded-2xl p-5 border-l-2 border-accent">
+              <div className="text-xs uppercase tracking-wider text-primary mb-1.5 font-semibold">Vision</div>
+              <div className="text-sm">Build India's most vibrant student innovation ecosystem.</div>
+            </div>
           </div>
         </div>
+
+        {/* Right: pillars */}
         <div>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            SRM InnovateX 2026 is a flagship national hackathon that brings together the sharpest student minds across India — engineers, designers, and founders — to spend 24 hours turning ideas into shipping products.
-          </p>
-          <div className="mt-6 space-y-4">
-            <div className="glass rounded-2xl p-5">
-              <div className="text-xs uppercase tracking-wider text-cyan mb-1">Mission</div>
-              <div>Empower students to solve real-world problems through code and creativity.</div>
-            </div>
-            <div className="glass rounded-2xl p-5">
-              <div className="text-xs uppercase tracking-wider text-purple mb-1">Vision</div>
-              <div>Build India's most vibrant student innovation ecosystem.</div>
-            </div>
-          </div>
-          <div className="mt-6 grid sm:grid-cols-2 gap-3">
+          <div className="text-sm text-muted-foreground mb-5 uppercase tracking-wider font-medium">What you'll experience</div>
+          <div className="grid sm:grid-cols-2 gap-3">
             {pillars.map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="glass rounded-2xl p-4 hover:bg-white/[0.08] transition group">
-                <Icon className="h-5 w-5 text-primary group-hover:text-cyan transition" />
-                <div className="mt-2 font-medium">{label}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">{desc}</div>
+              <div key={label} className="group glass rounded-2xl p-5 hover:bg-white/[0.08] transition-all duration-300 hover:-translate-y-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/30 group-hover:to-accent/30 transition">
+                    <Icon className="h-4 w-4 text-primary group-hover:text-cyan transition" />
+                  </div>
+                  <div className="font-display font-semibold">{label}</div>
+                </div>
+                <div className="text-sm text-muted-foreground leading-relaxed">{desc}</div>
               </div>
             ))}
+          </div>
+
+          {/* Evaluation highlight */}
+          <div className="mt-5 glass-strong rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-4">
+              <Zap className="h-4 w-4 text-accent" />
+              <div className="text-sm font-semibold">Multi-Stage Evaluation</div>
+            </div>
+            <div className="space-y-3">
+              {[
+                { time: "First 20 min", title: "Problem Pitch", desc: "Define your problem and present your approach." },
+                { time: "After 7 hours", title: "Progress Check", desc: "Technical review of implementation and innovation." },
+                { time: "After 15 hours", title: "Prototype Review", desc: "Working demo, UX and real-world impact assessed." },
+                { time: "Final Round", title: "Industry Judging", desc: "Shortlisted teams pitch to founders and experts." },
+              ].map(({ time, title, desc }) => (
+                <div key={title} className="flex items-start gap-3">
+                  <div className="mt-0.5 shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary whitespace-nowrap">{time}</div>
+                  <div>
+                    <div className="text-xs font-semibold">{title}</div>
+                    <div className="text-[11px] text-muted-foreground">{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -325,35 +393,104 @@ function WhyParticipate() {
 
 function Prizes() {
   const prizes = [
-    { icon: Trophy, place: "Winner", amount: "₹35,000", color: "from-yellow-400 to-orange-500" },
-    { icon: Award, place: "Runner Up", amount: "₹15,000", color: "from-slate-300 to-slate-500" },
-    { icon: Medal, place: "Second Runner Up", amount: "₹10,000", color: "from-orange-400 to-amber-700" },
+    {
+      icon: Trophy,
+      place: "1st Prize",
+      amount: "₹35,000",
+      color: "from-yellow-400 to-orange-500",
+      ringColor: "ring-yellow-400/30",
+      desc: "Winner of the hackathon",
+    },
+    {
+      icon: Award,
+      place: "2nd Prize",
+      amount: "₹15,000",
+      color: "from-slate-300 to-slate-500",
+      ringColor: "ring-slate-300/30",
+      desc: "Runner-up team",
+    },
+    {
+      icon: Medal,
+      place: "3rd Prize",
+      amount: "₹10,000",
+      color: "from-orange-400 to-amber-700",
+      ringColor: "ring-orange-400/30",
+      desc: "Second runner-up",
+    },
   ];
+
+  const extraPerks = [
+    { icon: Shield, label: "Trophies & Shields" },
+    { icon: FileBadge, label: "Certificates" },
+    { icon: Star, label: "Medals" },
+    { icon: Briefcase, label: "Internship Offers" },
+    { icon: TrendingUp, label: "Industry Exposure" },
+    { icon: Laptop, label: "Project Showcasing" },
+  ];
+
   return (
     <section id="prizes" className="relative py-24 sm:py-32">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-primary/30 via-purple/30 to-cyan/30 blur-[120px] animate-glow-pulse" />
       </div>
-      <div className="relative mx-auto max-w-7xl px-4 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-cyan mb-4">
-          Prize Pool
+      <div className="relative mx-auto max-w-7xl px-4">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-cyan mb-4">
+            Prize Pool
+          </div>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold">Take home your share of</h2>
+          <div className="mt-6 font-display text-7xl sm:text-9xl font-bold text-gradient-brand leading-none">
+            ₹60,000
+          </div>
+          <p className="mt-4 text-muted-foreground max-w-md mx-auto">
+            Plus trophies, certificates, internship offers & industry exposure from our partners.
+          </p>
         </div>
-        <h2 className="font-display text-4xl sm:text-5xl font-bold">Take home your share of</h2>
-        <div className="mt-6 font-display text-7xl sm:text-9xl font-bold text-gradient-brand leading-none">
-          ₹60,000
-        </div>
-        <p className="mt-4 text-muted-foreground">plus internship offers & swag from our sponsors.</p>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
-          {prizes.map(({ icon: Icon, place, amount, color }, i) => (
-            <div key={place} className={`glass-strong rounded-3xl p-8 text-center hover:-translate-y-2 transition-all duration-500 ${i === 0 ? "md:scale-110 md:-translate-y-4" : ""}`}>
-              <div className={`mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br ${color}`}>
-                <Icon className="h-8 w-8 text-white" />
+        {/* Prize cards */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {prizes.map(({ icon: Icon, place, amount, color, ringColor, desc }, i) => (
+            <div
+              key={place}
+              className={`relative glass-strong rounded-3xl p-8 text-center transition-all duration-500 hover:-translate-y-3 ${i === 0 ? "md:scale-110 md:-translate-y-4 ring-2 ring-yellow-400/20" : ""}`}
+            >
+              {i === 0 && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-lg">
+                  Top Prize
+                </div>
+              )}
+              <div className={`mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br ${color} shadow-lg ring-4 ${ringColor}`}>
+                <Icon className="h-10 w-10 text-white" />
               </div>
-              <div className="mt-5 text-sm text-muted-foreground uppercase tracking-wider">{place}</div>
-              <div className="mt-2 font-display text-4xl font-bold text-gradient">{amount}</div>
+              <div className="mt-5 text-xs text-muted-foreground uppercase tracking-widest font-medium">{place}</div>
+              <div className="mt-1 font-display text-4xl font-bold text-gradient">{amount}</div>
+              <div className="mt-3 text-xs text-muted-foreground">{desc}</div>
+              <div className="mt-5 pt-4 border-t border-primary/10">
+                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                  Certificate + Trophy included
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Extra perks */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="text-center mb-6">
+            <div className="text-sm font-semibold text-foreground">Winners also receive</div>
+            <div className="text-xs text-muted-foreground mt-1">Beyond the cash — recognition that lasts</div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {extraPerks.map(({ icon: Icon, label }) => (
+              <div key={label} className="glass rounded-xl p-3 text-center group hover:bg-white/[0.08] transition">
+                <div className="mx-auto grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/30 group-hover:to-accent/30 transition mb-2">
+                  <Icon className="h-4 w-4 text-primary" />
+                </div>
+                <div className="text-[11px] font-medium leading-tight">{label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -362,36 +499,32 @@ function Prizes() {
 
 function Tracks() {
   const tracks = [
-    { icon: Leaf, name: "Sustainability & Climate", desc: "Tech that helps the planet breathe easier.", tag: "01", stats: "8 mentors" },
-    { icon: HeartPulse, name: "Healthcare & MedTech", desc: "Reimagine diagnostics, care, and access.", tag: "02", stats: "10 mentors" },
-    { icon: GraduationCap, name: "Education Technology", desc: "Rethink how the next billion learners learn.", tag: "03", stats: "6 mentors" },
-    { icon: Coins, name: "FinTech", desc: "Banking, payments, and finance for a new era.", tag: "04", stats: "9 mentors" },
-    { icon: Rocket, name: "Open Innovation", desc: "No rules. Just build something audacious.", tag: "05", stats: "15 mentors" },
+    { icon: Rocket, name: "Open Innovation", desc: "Build innovative tech solutions for meaningful real-world problems across any domain.", tag: "01", color: "from-violet-500/20 to-purple/20" },
+    { icon: Coins, name: "FinTech", desc: "Digital payments, banking, financial inclusion, and financial security.", tag: "02", color: "from-emerald-500/20 to-primary/20" },
+    { icon: Wheat, name: "AgriTech", desc: "Smart farming, farmer-focused solutions, food systems and rural innovation.", tag: "03", color: "from-lime-500/20 to-accent/20" },
+    { icon: GraduationCap, name: "EduTech", desc: "Personalized learning, accessibility, skill development and innovative learning solutions.", tag: "04", color: "from-cyan/20 to-primary/20" },
+    { icon: Leaf, name: "Sustainability", desc: "Climate tech, waste management, renewable energy and sustainable solutions.", tag: "05", color: "from-green-500/20 to-primary/20" },
   ];
   return (
-    <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Five focused tracks — each with dedicated mentors and problem statements.">
+    <Section id="tracks" eyebrow="Innovation tracks" title="Pick a lane. Ship something incredible." subtitle="Five focused tracks — each with dedicated mentors and industry problem statements.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tracks.map(({ icon: Icon, name, desc, tag, stats }) => (
+        {tracks.map(({ icon: Icon, name, desc, tag, color }) => (
           <div
             key={name}
             className="group relative rounded-3xl p-[1px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
             style={{ background: "linear-gradient(140deg, rgba(6,78,59,0.18), rgba(201,168,76,0.28), rgba(6,78,59,0.10))" }}
           >
-            {/* animated conic sheen on hover */}
             <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                 style={{ background: "conic-gradient(from_0deg,transparent,rgba(201,168,76,0.35),transparent_40%)" }} />
+                 style={{ background: "conic-gradient(from 0deg,transparent,rgba(201,168,76,0.35),transparent 40%)" }} />
             <div className="relative h-full rounded-[calc(1.5rem-1px)] bg-[color-mix(in_oklab,var(--surface)_92%,transparent)] backdrop-blur-xl p-7 overflow-hidden">
-              {/* corner glow */}
               <div className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full blur-3xl opacity-40 group-hover:opacity-90 transition-opacity duration-700"
                    style={{ background: "radial-gradient(circle, rgba(201,168,76,0.55), transparent 70%)" }} />
-              {/* grid pattern */}
               <div className="pointer-events-none absolute inset-0 opacity-[0.05] group-hover:opacity-[0.09] transition"
                    style={{ backgroundImage: "linear-gradient(var(--primary) 1px,transparent 1px),linear-gradient(90deg,var(--primary) 1px,transparent 1px)", backgroundSize: "22px 22px" }} />
-
               <div className="relative flex items-start justify-between">
                 <div className="relative">
                   <div className="absolute inset-0 blur-xl bg-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition duration-500" />
-                  <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/25 transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                  <div className={`relative grid h-14 w-14 place-items-center rounded-2xl border border-primary/15 bg-gradient-to-br ${color} group-hover:scale-110 transition-all duration-500 group-hover:rotate-[-6deg]`}>
                     <Icon className="h-7 w-7 text-primary" strokeWidth={1.6} />
                   </div>
                 </div>
@@ -399,14 +532,11 @@ function Tracks() {
                   {tag}
                 </span>
               </div>
-
               <h3 className="mt-6 font-display text-xl font-semibold leading-tight">{name}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-
               <div className="mt-6 flex items-center justify-between pt-5 border-t border-primary/10">
-                <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">{stats}</span>
+                <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Explore track</span>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
-                  Explore
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300 group-hover:rotate-[-45deg]">
                     <ArrowRight className="h-3 w-3" />
                   </span>
@@ -425,19 +555,9 @@ function useReveal<T extends HTMLElement = HTMLDivElement>() {
   useEffect(() => {
     if (!ref) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      ref.classList.add("in-view");
-      return;
-    }
+    if (prefersReduced) { ref.classList.add("in-view"); return; }
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            ref.classList.add("in-view");
-            io.unobserve(ref);
-          }
-        });
-      },
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { ref.classList.add("in-view"); io.unobserve(ref); } }); },
       { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
     );
     io.observe(ref);
@@ -446,24 +566,12 @@ function useReveal<T extends HTMLElement = HTMLDivElement>() {
   return setRef;
 }
 
-function TimelineRow({
-  s, i, right,
-}: {
-  s: { date: string; time: string; title: string; desc: string; icon: any };
-  i: number;
-  right: boolean;
-}) {
+function TimelineRow({ s, i, right }: { s: { date: string; time: string; title: string; desc: string; icon: any }; i: number; right: boolean }) {
   const setRef = useReveal<HTMLDivElement>();
   const Icon = s.icon;
-  // Cap stagger so mobile doesn't wait forever
   const delay = Math.min(i, 3) * 90;
   return (
-    <div
-      ref={setRef}
-      className="reveal relative pl-16 sm:pl-20 md:pl-0 md:grid md:grid-cols-2 md:gap-16 items-center"
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {/* card */}
+    <div ref={setRef} className="reveal relative pl-16 sm:pl-20 md:pl-0 md:grid md:grid-cols-2 md:gap-16 items-center" style={{ transitionDelay: `${delay}ms` }}>
       <div className={`${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
         <div className={`group relative inline-block max-w-md text-left transition-all duration-500 md:hover:-translate-y-1 ${right ? "" : "md:ml-auto"}`}>
           <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 opacity-0 md:group-hover:opacity-100 blur-xl transition duration-500 motion-reduce:hidden" />
@@ -482,8 +590,6 @@ function TimelineRow({
           </div>
         </div>
       </div>
-
-      {/* node */}
       <div className="absolute left-6 sm:left-8 md:left-1/2 top-6 md:top-8 -translate-x-1/2 z-10">
         <div className="relative">
           <div className="absolute inset-0 rounded-full bg-accent/40 blur-md animate-[glow-pulse_4s_ease-in-out_infinite] motion-reduce:hidden" />
@@ -492,7 +598,6 @@ function TimelineRow({
           </div>
         </div>
       </div>
-
       <div className={right ? "md:col-start-1 md:row-start-1" : "md:col-start-2 md:row-start-1"} />
     </div>
   );
@@ -501,27 +606,20 @@ function TimelineRow({
 function Timeline() {
   const steps = [
     { date: "Aug 01", time: "00:00 IST", title: "Registration Opens", desc: "Applications go live to teams across India.", icon: Sparkles },
-    { date: "Sep 15", time: "23:59 IST", title: "Registration Closes", desc: "Final teams confirmed and shortlisted.", icon: FileBadge },
-    { date: "Sep 26", time: "09:00 IST", title: "Hackathon Starts", desc: "The 24-hour clock officially begins.", icon: Rocket },
-    { date: "Sep 27", time: "09:00 IST", title: "Project Evaluation", desc: "Live demos to a panel of industry judges.", icon: Code2 },
-    { date: "Sep 27", time: "18:00 IST", title: "Prize Distribution", desc: "Winners announced. Champions crowned.", icon: Trophy },
+    { date: "Sep 10", time: "23:59 IST", title: "Registration Closes", desc: "Final teams confirmed and shortlisted.", icon: FileBadge },
+    { date: "Sep 19", time: "09:00 IST", title: "Hackathon Starts", desc: "The 24-hour clock officially begins.", icon: Rocket },
+    { date: "Sep 20", time: "09:00 IST", title: "Project Evaluation", desc: "Live demos to a panel of industry judges.", icon: Code2 },
+    { date: "Sep 20", time: "18:00 IST", title: "Prize Distribution", desc: "Winners announced. Champions crowned.", icon: Trophy },
   ];
   return (
     <Section id="timeline" eyebrow="Timeline" title="Mark your calendar.">
       <div className="relative">
-        {/* rail */}
         <div className="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-1/2 overflow-hidden rounded-full">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/40 to-primary/10" />
-          <div
-            className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[shimmer_3s_linear_infinite] motion-reduce:hidden"
-            style={{ backgroundSize: "100% 300%" }}
-          />
+          <div className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[shimmer_3s_linear_infinite] motion-reduce:hidden" style={{ backgroundSize: "100% 300%" }} />
         </div>
-
         <div className="space-y-10 sm:space-y-12 md:space-y-16">
-          {steps.map((s, i) => (
-            <TimelineRow key={i} s={s} i={i} right={i % 2 === 1} />
-          ))}
+          {steps.map((s, i) => <TimelineRow key={i} s={s} i={i} right={i % 2 === 1} />)}
         </div>
       </div>
     </Section>
@@ -540,7 +638,7 @@ function Venue() {
           <p className="mt-1 text-muted-foreground">Ramapuram Campus, Chennai — Tamil Nadu, India</p>
           <div className="mt-6 space-y-3 text-sm">
             <div className="flex items-start gap-3"><MapPin className="h-4 w-4 text-primary mt-0.5" /> Bharathi Salai, Ramapuram, Chennai — 600089</div>
-            <div className="flex items-start gap-3"><Clock className="h-4 w-4 text-primary mt-0.5" /> 26 Sep 09:00 AM → 27 Sep 09:00 AM IST</div>
+            <div className="flex items-start gap-3"><Clock className="h-4 w-4 text-primary mt-0.5" /> 19 Sep 09:00 AM → 20 Sep 09:00 AM IST</div>
             <div className="flex items-start gap-3"><Users className="h-4 w-4 text-primary mt-0.5" /> Open to students across India</div>
           </div>
           <a href="https://maps.google.com/?q=SRM+University+Ramapuram" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm hover:bg-white/10 transition">
@@ -560,14 +658,109 @@ function Venue() {
   );
 }
 
+function InternshipOpportunities() {
+  const partners = [
+    {
+      name: "Paryan Technologies Pvt. Ltd.",
+      type: "Financial Sponsor",
+      contribution: "₹15,000 financial support",
+      icon: Building2,
+      color: "from-primary/20 to-accent/20",
+      perks: ["Networking with the founding team", "Potential internship placements", "Industry mentorship access"],
+    },
+    {
+      name: "Big Bucks Innovation Pvt. Ltd.",
+      type: "Product & Talent Partner",
+      contribution: "₹2,000 participant vouchers",
+      icon: Laptop,
+      color: "from-cyan/20 to-primary/20",
+      perks: ["Software internship opportunities", "IoT-related internships", "Industrial programs", "Industry exposure"],
+    },
+  ];
+
+  const opportunities = [
+    { icon: Briefcase, label: "Software Internships" },
+    { icon: Laptop, label: "IoT Programs" },
+    { icon: TrendingUp, label: "Industry Exposure" },
+    { icon: Gift, label: "Vouchers & Goodies" },
+    { icon: Network, label: "Career Networking" },
+    { icon: Star, label: "Project Showcasing" },
+  ];
+
+  return (
+    <section id="industry" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="max-w-2xl mb-14">
+          <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-cyan mb-4">
+            Industry support
+          </div>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold leading-[1.05]">
+            Beyond the hackathon — real opportunities.
+          </h2>
+          <p className="mt-4 text-muted-foreground text-lg">
+            Our industry partners provide participants with internships, mentorship, and career pathways that extend well beyond the event.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6 mb-12">
+          {partners.map(({ name, type, contribution, icon: Icon, color, perks }) => (
+            <div key={name} className="group relative glass-strong rounded-3xl p-8 overflow-hidden hover:-translate-y-1 transition-all duration-300">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+              <div className="relative">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className={`grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${color} shrink-0`}>
+                    <Icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-display text-lg font-bold leading-tight">{name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5 uppercase tracking-wider">{type}</div>
+                    <div className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                      <CheckCircle2 className="h-3 w-3" /> {contribution}
+                    </div>
+                  </div>
+                </div>
+                <ul className="space-y-2">
+                  {perks.map((perk) => (
+                    <li key={perk} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0" />
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="glass rounded-3xl p-8">
+          <div className="text-center mb-6">
+            <div className="font-display text-xl font-semibold">Opportunities for all participants</div>
+            <div className="text-sm text-muted-foreground mt-1">Connect your project experience with real-world career pathways</div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {opportunities.map(({ icon: Icon, label }) => (
+              <div key={label} className="text-center group">
+                <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-primary/15 to-accent/15 group-hover:from-primary/25 group-hover:to-accent/25 transition mb-2">
+                  <Icon className="h-5 w-5 text-primary" />
+                </div>
+                <div className="text-xs font-medium leading-tight">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FAQ() {
   const faqs = [
-    { q: "Who can participate?", a: "Any undergraduate or postgraduate student in India with a valid ID card." },
-    { q: "What is the team size?", a: "Teams of 2 to 4 members. Solo participants can find teammates on our Discord." },
-    { q: "Can beginners participate?", a: "Absolutely. We have mentors on-ground and beginner-friendly problem statements." },
+    { q: "Who can participate?", a: "Any undergraduate or postgraduate student in India with a valid college ID card." },
+    { q: "What is the team size?", a: "Teams of 3 to 5 members. Fees vary by team size: ₹1,399 for 3 members, ₹1,799 for 4, ₹2,099 for 5." },
+    { q: "Can beginners participate?", a: "Absolutely. We have mentors on-ground and beginner-friendly problem statements across all tracks." },
     { q: "Can we use AI tools?", a: "Yes, AI tools like GitHub Copilot and Cursor are welcome — build with the modern stack." },
-    { q: "What should we bring?", a: "Your laptop, chargers, ID card, and boundless energy. Food and workspace are on us." },
-    { q: "Is accommodation provided?", a: "Yes — accommodation is provided for participants traveling from outside Chennai." },
+    { q: "What should we bring?", a: "Laptop & charger, extension board, power bank, ID card, and personal essentials. Refreshments and one dinner are provided." },
+    { q: "Is accommodation provided?", a: "Accommodation arrangements will be communicated to registered teams. Please reach out to the organizers for details." },
   ];
   return (
     <Section id="faq" eyebrow="Frequently asked" title="Everything you wanted to ask.">
@@ -613,17 +806,21 @@ function Sponsors() {
 
 function Team() {
   const team = [
-    { name: "K. Harshith", role: "Lead Organizer" },
-    { name: "P. Pranush", role: "Tech Lead" },
-    { name: "U. Veerendra", role: "Finance Lead" },
+    { name: "K. Harshith", role: "Main Organizer", initials: "KH", featured: true },
+    { name: "P. Pranush", role: "Tech Lead", initials: "PP", featured: false },
+    { name: "U. Veerendra", role: "Finance Lead", initials: "UV", featured: false },
   ];
   return (
     <Section id="team" eyebrow="Organizing team" title="Meet the crew behind InnovateX.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {team.map((m) => (
-          <div key={m.name} className="glass rounded-2xl p-6 hover:-translate-y-1 transition">
-            <div className="h-40 rounded-xl bg-gradient-to-br from-primary/30 via-purple/30 to-cyan/30 flex items-center justify-center">
-              <div className="font-display text-5xl font-bold text-white/80">{m.name.split(" ").map((s) => s[0]).join("")}</div>
+          <div key={m.name} className={`glass rounded-2xl p-6 hover:-translate-y-1 transition relative overflow-hidden ${m.featured ? "ring-1 ring-accent/30" : ""}`}>
+            {m.featured && (
+              <div className="absolute top-3 right-3 rounded-full bg-accent/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary">Lead</div>
+            )}
+            <div className="h-40 rounded-xl bg-gradient-to-br from-primary/30 via-purple/30 to-cyan/30 flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 grid-bg opacity-20" />
+              <div className="font-display text-5xl font-bold text-white/80 relative">{m.initials}</div>
             </div>
             <div className="mt-4 flex items-start justify-between gap-3">
               <div>
@@ -654,7 +851,7 @@ function ContactCTA() {
                 Ready to <span className="text-gradient-brand">build tomorrow</span>?
               </h2>
               <p className="mt-4 text-muted-foreground text-lg">
-                Grab your spot before registrations close on September 15th.
+                Grab your spot before registrations close on September 10th.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#" className="inline-flex items-center gap-2 rounded-full btn-glow btn-glow-hover px-7 py-3.5 text-sm font-semibold text-white">
@@ -741,6 +938,7 @@ function InnovateXLanding() {
         <WhyParticipate />
         <Prizes />
         <Tracks />
+        <InternshipOpportunities />
         <Timeline />
         <Venue />
         <FAQ />

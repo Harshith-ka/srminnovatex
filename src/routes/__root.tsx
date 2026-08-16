@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "SRM InnovateX 2026" },
-      { name: "twitter:description", content: "24-Hour National Hackathon · ₹60,000 Prize Pool · September 26-27, 2026" },
+      { name: "twitter:description", content: "24-Hour National Hackathon · ₹60,000 Prize Pool · September 19-20, 2026" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
