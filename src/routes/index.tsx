@@ -70,7 +70,7 @@ function Nav() {
       <div className="mx-auto max-w-7xl px-4">
         <nav className={`flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all ${scrolled ? "glass-strong" : "glass"}`}>
           <a href="#home" className="flex items-center gap-2">
-            <img src="/favicon.png" alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
+            <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div className="flex flex-col leading-tight">
               <span className="font-display text-sm font-bold tracking-tight">SRM InnovateX</span>
               <span className="text-[10px] text-muted-foreground -mt-0.5">SRM · 2026</span>
@@ -910,7 +910,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <img src="/favicon.png" alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
+            <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div>
               <div className="font-display font-bold">SRM InnovateX 2026</div>
               <div className="text-xs text-muted-foreground">Ideate | Innovate | Impact</div>

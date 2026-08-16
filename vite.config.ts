@@ -5,15 +5,24 @@ import path from "path";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
+const isStaticBuild = process.env.STATIC_BUILD === "1";
+
 export default defineConfig({
   plugins: [
     tanstackStart({
-      server: { entry: "server" },
+      server: {
+        entry: "server",
+        ...(isStaticBuild && {
+          preset: "static",
+          prerender: { routes: ["/"] },
+        }),
+      },
     }),
     react(),
     tailwindcss(),
     tsConfigPaths(),
   ],
+  base: process.env.VITE_BASE_URL ?? "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
