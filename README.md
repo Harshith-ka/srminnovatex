@@ -1,29 +1,23 @@
-# Welcome to your Lovable project
+# SRM InnovateX 2026
 
-This project was built with [Lovable](https://lovable.dev).
+Official website for SRM InnovateX 2026 — a 24-hour national hackathon at SRM University, Ramapuram, Chennai.
 
-## Build with Lovable
+**Live site:** https://harshith-ka.github.io/srminnovatex/
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Event
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Date:** September 19–20, 2026
+- **Venue:** SRM University, Ramapuram, Chennai
+- **Prize Pool:** ₹60,000
+- **Tracks:** Open Innovation, FinTech, AgriTech, EduTech, Sustainability
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+npm install
 npm run dev
 ```
 
-## Built with
+## Deploy
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+Pushing to `main` triggers GitHub Actions which builds, pre-renders, and deploys to GitHub Pages via the `gh-pages` branch.
