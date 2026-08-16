@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logoAsset from "@/assets/innovatex-logo.png.asset.json";
 import { useEffect, useState } from "react";
 import {
   Accordion,
@@ -70,7 +69,7 @@ function Nav() {
       <div className="mx-auto max-w-7xl px-4">
         <nav className={`flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all ${scrolled ? "glass-strong" : "glass"}`}>
           <a href="#home" className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
+            <img src="/favicon.png" alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div className="flex flex-col leading-tight">
               <span className="font-display text-sm font-bold tracking-tight">SRM InnovateX</span>
               <span className="text-[10px] text-muted-foreground -mt-0.5">SRM · 2026</span>
@@ -148,7 +147,7 @@ function Hero() {
                 Explore Tracks
               </a>
             </div>
-            <div className="mt-10 grid grid-cols-4 gap-3 max-w-lg">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-lg">
               {stats.map((s) => (
                 <div key={s.l} className="glass rounded-xl p-3 text-center">
                   <div className="font-display text-xl font-bold text-gradient-brand">{s.v}</div>
@@ -172,15 +171,15 @@ function Hero() {
                   <div className="h-2 w-2 rounded-full bg-green-400" />
                 </div>
                 <div className="font-mono text-xs space-y-1.5 text-cyan">
-                  <div><span className="text-purple">const</span> <span className="text-white">event</span> = {"{"}</div>
-                  <div className="pl-4">name: <span className="text-green-300">"InnovateX"</span>,</div>
-                  <div className="pl-4">year: <span className="text-orange-300">2026</span>,</div>
-                  <div className="pl-4">prize: <span className="text-green-300">"₹60K"</span>,</div>
-                  <div className="pl-4">tracks: <span className="text-orange-300">5</span>,</div>
+                  <div><span className="text-accent">const</span> <span className="text-foreground font-semibold">event</span> = {"{"}</div>
+                  <div className="pl-4">name: <span className="text-emerald-700">"InnovateX"</span>,</div>
+                  <div className="pl-4">year: <span className="text-amber-700">2026</span>,</div>
+                  <div className="pl-4">prize: <span className="text-emerald-700">"₹60K"</span>,</div>
+                  <div className="pl-4">tracks: <span className="text-amber-700">5</span>,</div>
                   <div>{"}"};</div>
                   <div className="pt-2 text-muted-foreground">// build.tomorrow()</div>
                 </div>
-                <div className="text-[10px] text-muted-foreground text-right">/* hack _</div>
+                <div className="text-[10px] text-muted-foreground text-right font-mono">/* hack _*/</div>
               </div>
             </div>
             <div className="absolute -top-4 -right-4 glass rounded-2xl p-3 animate-float-slow">
@@ -474,7 +473,7 @@ function TimelineRow({
                 <Icon className="h-4 w-4" strokeWidth={1.8} />
               </span>
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold">{s.date}</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">{s.date}</div>
                 <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{s.time}</div>
               </div>
             </div>
@@ -566,7 +565,7 @@ function FAQ() {
     { q: "Who can participate?", a: "Any undergraduate or postgraduate student in India with a valid ID card." },
     { q: "What is the team size?", a: "Teams of 2 to 4 members. Solo participants can find teammates on our Discord." },
     { q: "Can beginners participate?", a: "Absolutely. We have mentors on-ground and beginner-friendly problem statements." },
-    { q: "Can we use AI tools?", a: "Yes, AI tools like Copilot, Cursor, and Lovable are welcome — build with the modern stack." },
+    { q: "Can we use AI tools?", a: "Yes, AI tools like GitHub Copilot and Cursor are welcome — build with the modern stack." },
     { q: "What should we bring?", a: "Your laptop, chargers, ID card, and boundless energy. Food and workspace are on us." },
     { q: "Is accommodation provided?", a: "Yes — accommodation is provided for participants traveling from outside Chennai." },
   ];
@@ -695,7 +694,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
+            <img src="/favicon.png" alt="SRM InnovateX logo" className="h-9 w-9 rounded-xl object-contain bg-white/90 p-0.5" />
             <div>
               <div className="font-display font-bold">SRM InnovateX 2026</div>
               <div className="text-xs text-muted-foreground">Ideate | Innovate | Impact</div>
